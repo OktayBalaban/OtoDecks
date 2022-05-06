@@ -4,6 +4,12 @@
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1">
   <MAINGROUP id="UJsG5A" name="OtoDecks">
     <GROUP id="{3827D737-E676-3B73-0A23-C7B39A6F04F9}" name="Source">
+      <FILE id="jBgPQR" name="TrackListComponent.cpp" compile="1" resource="0"
+            file="Source/TrackListComponent.cpp"/>
+      <FILE id="GDKTI6" name="TrackListComponent.h" compile="0" resource="0"
+            file="Source/TrackListComponent.h"/>
+      <FILE id="lRenfu" name="CSVOperator.cpp" compile="1" resource="0" file="Source/CSVOperator.cpp"/>
+      <FILE id="vC6dew" name="CSVOperator.h" compile="0" resource="0" file="Source/CSVOperator.h"/>
       <FILE id="vmnEPr" name="PlaylistComponent.cpp" compile="1" resource="0"
             file="Source/PlaylistComponent.cpp"/>
       <FILE id="LCFTTy" name="PlaylistComponent.h" compile="0" resource="0"

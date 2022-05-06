@@ -13,6 +13,8 @@
 #include <JuceHeader.h>
 #include "DJAudioPlayer.h"
 #include "WaveformDisplay.h"
+#include "PlaylistComponent.h"
+#include "TrackListComponent.h"
 
 //==============================================================================
 /*
@@ -24,7 +26,7 @@ class DeckGUI  :    public juce::Component,
                     public juce::Timer
 {
 public:
-    DeckGUI(DJAudioPlayer* _player, juce::AudioFormatManager& formatManagerToUse, juce::AudioThumbnailCache& cacheToUse);
+    DeckGUI(DJAudioPlayer* _player, juce::AudioFormatManager& _formatManagerToUse, juce::AudioThumbnailCache& cacheToUse, PlaylistComponent* _playlist);
     ~DeckGUI();
 
     void paint (juce::Graphics&) override;
@@ -45,15 +47,22 @@ private:
 
     juce::TextButton playButton{ "PLAY" };
     juce::TextButton stopButton{ "STOP" };
-    juce::TextButton loadButton{ "LOAD" };
+    juce::TextButton loadButton{ "LOAD AND PLAY" };
+    juce::TextButton playSelectedButton{ "PLAY PREPARED TRACK" };
+    juce::TextButton muteButton{ "MUTE" };
+    juce::TextButton twiceSpeedButton{ "2X" };
+    juce::TextButton loadPlaylistButton{ "LOAD PLAYLIST" };
 
     juce::Slider volSlider;
     juce::Slider speedSlider;
     juce::Slider posSlider;
 
     DJAudioPlayer* player;
-
+    PlaylistComponent* playlist;
     WaveformDisplay waveformDisplay;
+    
+
+    TrackListComponent trackListComponent{ player, &waveformDisplay };
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DeckGUI)
 };

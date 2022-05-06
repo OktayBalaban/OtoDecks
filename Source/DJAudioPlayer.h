@@ -30,13 +30,16 @@ class DJAudioPlayer : public juce::AudioSource {
         void setPosition(double posInSecs);
         void setPositionRelative(double pos);
 
-
-
         void start();
         void stop();
 
         // Get the relative position of the playhead
         double getPositionRelative();
+
+        double sendTimer();
+
+        // Sends if the track is finished or not
+        bool isTrackFinished();
 
 
     private:

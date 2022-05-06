@@ -33,6 +33,7 @@ MainComponent::~MainComponent()
 {
     // This shuts down the audio device and clears the audio source.
     shutdownAudio();
+
 }
 
 //==============================================================================
@@ -74,10 +75,10 @@ void MainComponent::paint (juce::Graphics& g)
 
 void MainComponent::resized()
 {
-    deckGUI1.setBounds(0, 0, getWidth() / 2, getHeight() / 2 );
-    deckGUI2.setBounds(getWidth() / 2, 0, getWidth() / 2, getHeight() / 2);
+    deckGUI1.setBounds(0, 0, getWidth() / 2, getHeight() * 0.66 );
+    deckGUI2.setBounds(getWidth() / 2, 0, getWidth() / 2, getHeight() * 0.66);
 
-    playlistComponent.setBounds(0, getHeight() / 2, getWidth(), getHeight() / 2);
+    playlistComponent.setBounds(0, getHeight() * 0.66, getWidth(), getHeight() * 0.32);
 }
 
 bool DeckGUI::isInterestedInFileDrag(const juce::StringArray& files)
@@ -91,6 +92,20 @@ void DeckGUI::filesDropped(const juce::StringArray& files, int x, int y)
     std::cout << "DeckGUI::isInterestedInFileDrag" << std::endl;
     if (files.size() == 1)
     {
-        player->loadURL(juce::URL{ juce::File{files[0]} });
+        player->loadURL( juce::URL{ juce::File{files[0]} } );
+        waveformDisplay.loadURL( juce::URL{ juce::File{files[0]} } );
+
+        // Update the labels
+        juce::String newTrack = playlist->convertTrackPathToTitle(juce::File{ files[0] }.getFullPathName().toStdString());
+
+        trackListComponent.currentTrack = newTrack;
+        trackListComponent.nextTrack = "No Track";
+        trackListComponent.previousTrack = "No Track";
+        trackListComponent.labelUpdate();
+
+        // Clean the playlist from the deck
+        trackListComponent.trackTitles.clear();
+        trackListComponent.trackPaths.clear();
+        
     }
 }

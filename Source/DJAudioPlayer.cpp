@@ -111,5 +111,21 @@ void DJAudioPlayer::stop()
 
 double DJAudioPlayer::getPositionRelative()
 {
-    return transportSource.getCurrentPosition() / transportSource.getLengthInSeconds();
+    double pos = transportSource.getCurrentPosition() / transportSource.getLengthInSeconds();
+
+    if (isnan(pos)) {
+        return 0;
+    }
+    return pos;
+}
+
+double DJAudioPlayer::sendTimer()
+{
+    return transportSource.getCurrentPosition();
+}
+
+bool DJAudioPlayer::isTrackFinished()
+{
+
+    return transportSource.hasStreamFinished();
 }

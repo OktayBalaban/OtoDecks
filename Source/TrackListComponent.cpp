@@ -10,6 +10,7 @@
 
 #include <JuceHeader.h>
 #include "TrackListComponent.h"
+#include "random"
 
 //==============================================================================
 TrackListComponent::TrackListComponent(DJAudioPlayer* _player, WaveformDisplay* _waveformDisplay)
@@ -458,7 +459,9 @@ juce::String TrackListComponent::convertSecondsToTimer(double time)
 void TrackListComponent::shuffleList()
 {
     // Shuffles the trackPaths vector first
-    std::random_shuffle(trackPaths.begin(), trackPaths.end());
+    std::random_device rd;
+    std::mt19937 shuffler(rd());
+    std::shuffle(trackPaths.begin(), trackPaths.end(), shuffler);
 
     // The suffled trackTitles should be synchronized with trackPaths
 
@@ -490,8 +493,9 @@ void TrackListComponent::proceedEndOfTrack()
     // If repeat mode is active, play the same song again
     else
     {
-        player->loadURL(juce::URL{ juce::File::File(trackPaths.at(trackCounter)) });
-        waveformDisplay->loadURL(juce::URL{ juce::File::File(trackPaths.at(trackCounter)) });
+        player->setPositionRelative(0.00);
+        player->start();
+
     }
 
 }

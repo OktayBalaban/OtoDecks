@@ -59,7 +59,9 @@ class PlaylistComponent  :  public juce::Component,
         juce::Label prepareLabel1; // Shows selected Track
         juce::Label prepareLabel2; // Writes Selected Track (Hardwritten)
 
+        // Add - Remove uttons
         juce::TextButton addTrackButton{ "ADD NEW TRACK" };
+        juce::TextButton removeTrackButton{ "REMOVE TRACK" };
 
         // Serachbox and Button
         juce::TextEditor searchBox{ "search tracks" };

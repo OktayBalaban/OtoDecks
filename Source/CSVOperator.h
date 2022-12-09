@@ -18,12 +18,15 @@ class CSVOperator
 
 		// Adds a new Track to the CSV file
 		static void addNewTrack(juce::String path);
+		
+		// Removes a track from the CSV file
+		static void removeTrack(int rowNumber);
 
 	private:
 
 		// Reads the tracks CSV file and adds them to trackPaths Array
 		static std::vector<std::string> readTracksCSV();
-
+		
 
 		
 };

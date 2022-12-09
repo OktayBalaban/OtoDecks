@@ -52,6 +52,7 @@ std::vector<std::string> CSVOperator::readTracksCSV()
     return tracks;
 }
 
+// Adds new track to the playlist
 void CSVOperator::addNewTrack(juce::String path)
 {
 
@@ -63,6 +64,38 @@ void CSVOperator::addNewTrack(juce::String path)
     csvFile << trackToBeAdded;
 
     csvFile.close();
+}
+
+// Removes the selected track from the playlist
+void CSVOperator::removeTrack(int rowNumber)
+{
+    DBG("Deletion: " << rowNumber);
+
+    std::string line;
+    int lineIndex = 0;
+    
+    std::ifstream originalFile;
+    originalFile.open(".\\Tracks.csv", std::ios::app);
+    
+    std::ofstream tempFile;
+    tempFile.open(".\\Temp.csv", std::ios::app);
+
+    while (getline(originalFile, line))
+    {
+        // Write every line except the line to be deleted
+        if (lineIndex != rowNumber)
+        {
+            tempFile << line << std::endl; 
+        }
+        // Increment index
+        lineIndex++;
+    }
+
+    // Delete the original file and replace it with the new one
+    tempFile.close();
+    originalFile.close();
+    remove(".\\Tracks.csv");
+    rename(".\\Temp.csv", ".\\Tracks.csv");
 }
 
 

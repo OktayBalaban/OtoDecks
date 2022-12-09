@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="BdMvOe" name="OtoDecks" projectType="guiapp" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1">
+              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
+              defines="JUCE_MODAL_LOOPS_PERMITTED=1">
   <MAINGROUP id="UJsG5A" name="OtoDecks">
     <GROUP id="{3827D737-E676-3B73-0A23-C7B39A6F04F9}" name="Source">
       <FILE id="jBgPQR" name="TrackListComponent.cpp" compile="1" resource="0"

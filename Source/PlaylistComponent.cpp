@@ -32,10 +32,12 @@ PlaylistComponent::PlaylistComponent()
     addAndMakeVisible(prepareLabel2);
 
     addAndMakeVisible(addTrackButton);
+    addAndMakeVisible(removeTrackButton);
     addAndMakeVisible(searchBox);
     addAndMakeVisible(searchButton);
     
     addTrackButton.addListener(this);
+    removeTrackButton.addListener(this);
 
     formatManager.registerBasicFormats();
 }
@@ -78,8 +80,9 @@ void PlaylistComponent::paint (juce::Graphics& g)
     prepareLabel2.setJustificationType(juce::Justification::centred);
     prepareLabel2.setBounds(getWidth() * 0.3, getHeight() * 0.72, getWidth() * 0.4, getHeight() * 0.1);
 
-    // Add Track Button
+    // Add - Remove Track Buttons
     addTrackButton.setBounds(getWidth() * 0.72, getHeight() * 0.68, getWidth() * 0.25, getHeight() * 0.1);
+    removeTrackButton.setBounds(getWidth() * 0.72, getHeight() * 0.80, getWidth() * 0.25, getHeight() * 0.1);
 
     // SearchBox and Search Button
     searchBox.setBounds(getWidth() * 0.02, getHeight() * 0.70, getWidth() * 0.25, getHeight() * 0.1);
@@ -270,6 +273,16 @@ void PlaylistComponent::buttonClicked(juce::Button* button)
             CSVOperator::addNewTrack(chooser.getResult().getFullPathName());
             refreshPlaylist();
         }
+    }
+
+    if (button == &removeTrackButton)
+    {
+        // Get the selected track's row and send it to deletion function in CSVOperator class
+        int trackRowNumber = tableComponent.getSelectedRow();
+        CSVOperator::removeTrack(trackRowNumber);
+
+        // Refresh the playlist
+        refreshPlaylist();
     }
 
     if (button == &searchButton)

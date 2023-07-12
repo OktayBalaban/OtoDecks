@@ -7,7 +7,7 @@ Developed using C++ and JUCE Framework.
 Originally developed as a project for OOP Course. A demo video available which introduces the functionalities. 
 Final Report (which is written for OOP course) can also be found for better insight.
 
-![image](https://github.com/OktayBalaban/OtoDecks/assets/47466287/b14497d7-6881-4867-bde5-66ee294c85d5)
+
 
 
 
